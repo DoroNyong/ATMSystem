@@ -10,6 +10,8 @@ public class ATMSystemManager : MonoBehaviour
     public GameObject deposit;
     public GameObject withdrawal;
 
+    public GameObject notice;
+
     public TextMeshProUGUI cash;
     public TextMeshProUGUI balance;
 
@@ -42,20 +44,30 @@ public class ATMSystemManager : MonoBehaviour
 
     public void CustomDepositButton()
     {
-        Debug.Log(depositInput.text);
+        //Debug.Log(depositInput.text);
 
-        string a = depositInput.text;
-        Debug.Log(a);
+        //string a = depositInput.text;
+        //Debug.Log(a);
 
-        int aaa = Convert.ToInt32(a);
-        Debug.Log(aaa);
+        //int abc;
+        //if (int.TryParse(depositInput.text, out abc))
+        //{
+        //    Debug.Log(abc);
+        //}
+        //else
+        //{
+        //    Debug.Log("실패했다");
+        //}
+
+        //    depositInput.text = "바뀐거임";
 
         int _amount = int.Parse(depositInput.text);
         int _balance = int.Parse(balance.text);
         int _cash = int.Parse(cash.text);
 
-        if (_balance < _amount)
+        if (_cash < _amount)
         {
+            notice.SetActive(true);
             return;
         }
         _cash -= _amount;
@@ -68,9 +80,25 @@ public class ATMSystemManager : MonoBehaviour
 
     public void CustomWithdrawalButton()
     {
-        int _amount = int.Parse(withdrawalInput.text.ToString());
+        int _amount = int.Parse(withdrawalInput.text);
         int _balance = int.Parse(balance.text);
+        int _cash = int.Parse(cash.text);
 
+        if (_balance < _amount)
+        {
+            notice.SetActive(true);
+            return;
+        }
+        _cash += _amount;
+        _balance -= _amount;
 
+        withdrawalInput.text = "";
+        balance.text = _balance.ToString();
+        cash.text = _cash.ToString();
+    }
+
+    public void Notice()
+    {
+        notice.SetActive(false);
     }
 }
