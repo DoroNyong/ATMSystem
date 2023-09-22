@@ -5,4 +5,7 @@
 ![image](https://github.com/DoroNyong/ATMSystem/assets/62960758/fbf63d98-9f2f-4ce5-b778-2546138c3540)
 
 
-textmeshpro text를 정수로 변환하는 부분에서 막혔습니다.
+장현교
+
+
+ATM 시스템 만들기
